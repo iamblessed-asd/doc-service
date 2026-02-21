@@ -7,13 +7,14 @@
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from typing import List, Any
+from typing import List, Any, Union
 
 from app import crud, schemas
 from app.api.v1 import deps
 from app.services import json_patch, json_diff
 from app.core.database import get_db
 from app.models.document import Document
+from app.schemas.document import DocumentPart
 
 router = APIRouter()
 
@@ -32,7 +33,7 @@ def create_document(
     """
     return crud.create_document(db, doc, owner=current_user)
 
-@router.get("/{doc_id}", response_model=schemas.DocumentInDB)
+@router.get("/{doc_id}", response_model=Union[schemas.DocumentInDB, DocumentPart])
 def read_document(
     doc_id: int,
     path: str = Query(None, description="Путь к части документа, например keyA.keyB"),

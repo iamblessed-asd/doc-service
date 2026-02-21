@@ -11,6 +11,9 @@ class DocumentBase(BaseModel):
 class DocumentCreate(DocumentBase):
     pass
 
+class DocumentPart(BaseModel):
+    content: Any
+
 class DocumentUpdate(BaseModel):
     title: Optional[str] = None
     content: Optional[Dict[str, Any]] = None
