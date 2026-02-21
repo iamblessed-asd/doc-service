@@ -70,7 +70,7 @@ $doc = Invoke-RestMethod -Uri "http://localhost:8000/api/v1/documents/$docId" `
     -Headers $headers
 $doc | ConvertTo-Json -Depth 5
 ```
-#### 4. Получить часть документа по пути
+#### 4. Получить часть документа по пути (В примере ищется город по path=address.city)
 ```bash
 $headers = @{
     "Authorization" = "Bearer $token"
